@@ -1,7 +1,6 @@
 const fs = require('fs');
 const http = require('http');
 const url = require('url');
-
 /////////////////////////////////
 // FILES
 
@@ -31,22 +30,20 @@ const url = require('url');
 // console.log('Will read file!');
 
 /////////////////////////////////
-// SERVER
+// SERVER 
+const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, 'utf-8',);
+const data0bj = JSON.parse(data);
+
 const server = http.createServer((req, res) => {
     const pathName = req.url;
 
-    if(pathName === '/' || pathName === '/overview') {
+    if (pathName === '/' || pathName === '/overview') {
         res.end('This is the OVERVIEW');
     } else if (pathName === '/PRODUCT') {
         res.end('This is the PRODUCT');
     } else if (pathName === '/api') {
-
-        fs.readFile(`${__dirname}/dev-data/data.json`, 'utf-8', (err, data) => {
-            const productData = JSON.parse(data);
-            res.end(data);
-        })
-
-        res.end('API');
+        res.writeHead(200, { 'Content-type': 'application/json'});
+        res.end(data);
     } else {
         res.writeHead(404, {
             'Content-type': 'text/html',
