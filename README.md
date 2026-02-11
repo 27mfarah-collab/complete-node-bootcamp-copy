@@ -6,4 +6,5 @@ Steps to run the code:
 
 1. go to VS terminal, 
 2. type "cd 1-node-farm
-3. type "node .\index.js" to have the port running
+3. type "cd starter"
+4. type "node .\index.js" to have the port running
